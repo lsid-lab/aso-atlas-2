@@ -97,14 +97,6 @@ stats:
     uv run python -m analyses.logic.models.s1_conditional_pipeline
     uv run python -m analyses.logic.models.ac_uncertainty
 
-# ── Data-backed Markdown blocks in the rebuttal ────────────
-rebuttal-tables:
-    uv run python -m analyses.logic.models.threshold_sweep
-    uv run python -m analyses.logic.models.s1_conditional_pipeline
-    uv run python -m analyses.logic.models.ac_uncertainty
-    uv run python -m analyses.render_rebuttal_tables
-    uv run pytest tests/test_rebuttal_tables.py tests/test_release_gene_reconciliation.py tests/test_paper_release_scope.py -q
-
 # ── Export (reads JSONs from data/results/) ──────────────
 export: ef-table
     uv run python -m analyses.export_paper_numbers

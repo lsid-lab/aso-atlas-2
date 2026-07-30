@@ -295,6 +295,14 @@ def compute():
         in_vivo = {int(k): v for k, v in row["in_vivo_precisions"].items()}
         both = {**in_vitro, **in_vivo}
 
+        if row["K"] == 0.20:
+            for stage, precision in both.items():
+                if precision != canonical_marginal[stage]:
+                    raise ValueError(
+                        f"K=20% precision at stage {stage} does not reproduce "
+                        f"the paper: {precision} vs {canonical_marginal[stage]}"
+                    )
+
         def corrected_savings(precs):
             _, corrected = _apply_fixed_correction(
                 base_marginal, precs, baseline_factors, model_factors,
@@ -308,6 +316,16 @@ def compute():
             "combined_pct": corrected_savings(both),
             "conditional_uplifts": "fixed at pooled K=0.20 point estimates",
         })
+
+    # Both calculations combine all held-out predictions, so the K=20% row
+    # must reproduce the paper's primary result exactly.
+    k20 = next(row for row in corrected_k_sensitivity if row["K"] == 0.20)
+    for key in ("in_vitro_only_pct", "in_vivo_only_pct", "combined_pct"):
+        if k20[key] != corrected_ordering[key]:
+            raise ValueError(
+                f"K=20% sensitivity does not reproduce {key}: "
+                f"{k20[key]} vs {corrected_ordering[key]}"
+            )
 
     # Ordinary nonparametric bootstrap of each stage's observed binary pass/fail
     # records. For binary values, the resampled number of passes has exactly this

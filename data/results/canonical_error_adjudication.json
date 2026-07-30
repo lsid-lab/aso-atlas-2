@@ -183,10 +183,7 @@
       "verdict": "real Atlas error",
       "charge_to": "Atlas dose-arm collapse",
       "xml_evidence": "Treatment 3 is a three-point 1, 5 and 15 mg/kg study with two injections over a week; collection is on day 8 and the table prints every dose arm.",
-      "adjudication": "Atlas retains only dose 1 and repeats values",
-      "null": [
-        " losing the 5 and 15 mg/kg arms. This causes 18 wrong value pairings plus missing Gold occurrences. Atlas day 8 is source-supported; Gold day 7 is nominal duration."
-      ]
+      "adjudication": "Atlas retains only the 1 mg/kg arm and repeats those values, producing 18 duplicate or misassigned outputs while omitting the corresponding 5 and 15 mg/kg source readouts. Atlas day 8 is source-supported; the verified transcription records the nominal seven-day duration."
     },
     {
       "issue_id": "AGT_HEP_T45",
@@ -198,10 +195,7 @@
       "verdict": "real Atlas error with timing ambiguity",
       "charge_to": "Atlas duplicate expansion",
       "xml_evidence": "The CD1 study doses 50 mg/kg twice weekly for six weeks, euthanizes 48 hours after the last dose and states sacrifice on day 43; each chemistry cell is a single scalar.",
-      "adjudication": "Every released biomarker value is duplicated",
-      "null": [
-        " creating 45 strict extras. Gold 42 and Atlas 44 use different inferred period conventions around an explicit day-43 collection; neither period exactly reproduces that statement. Generic species is representational."
-      ]
+      "adjudication": "Every released biomarker value is duplicated, creating 45 extras, including nine duplicate ALT outputs. The source states sacrifice on day 43; Atlas day 44 and the verified transcription's nominal 42-day duration reflect different timing conventions. Generic species is representational."
     },
     {
       "issue_id": "AGT_HEP_T54",
@@ -267,7 +261,7 @@
       "verdict": "mixed",
       "charge_to": "provenance merge plus timing convention",
       "xml_evidence": "Adjacent source tables 161 and 162 contain distinct supported values for compounds 881449 and 881658 under the same CD1 schedule.",
-      "adjudication": "Atlas vectors merge values from both source tables under table 162. The eight extras are real source values but have lost table-level provenance; the 28-versus-30 context difference is the same duration convention as the rest of the block."
+      "adjudication": "Atlas vectors merge values from both source tables under table 162. The eight extras, including ALT values 36 and 39, are valid values from table 161 but have incorrect table provenance; the 28-versus-30 context difference is the same duration convention as the rest of the block."
     },
     {
       "issue_id": "IRF4_HEP_RAT_37",

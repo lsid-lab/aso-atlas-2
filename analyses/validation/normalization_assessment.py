@@ -8,7 +8,6 @@ tested only where a source and released readout are numerically comparable.
 from __future__ import annotations
 
 import json
-import math
 import sys
 from pathlib import Path
 
@@ -23,19 +22,6 @@ from analyses.validation import gold_standard_audit as diagnostic
 OUTPUT = ROOT / "data" / "results" / "normalization_assessment.json"
 CANONICAL_LEDGER = ROOT / "data" / "validation" / "canonical_source_match_ledger.csv"
 LINEAGE_LEDGER = ROOT / "data" / "validation" / "lineage_rescued_recall.csv"
-
-
-def _wilson(k: int, n: int, z: float = 1.959963984540054) -> dict:
-    if n == 0:
-        return {"low_pct": None, "high_pct": None}
-    p = k / n
-    denominator = 1 + z * z / n
-    centre = (p + z * z / (2 * n)) / denominator
-    half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / denominator
-    return {
-        "low_pct": round(100 * max(0.0, centre - half), 4),
-        "high_pct": round(100 * min(1.0, centre + half), 4),
-    }
 
 
 def canonical_percent_control_assessment(
@@ -117,7 +103,6 @@ def canonical_percent_control_assessment(
         "orientation_informative_pairs": informative_n,
         "confirmed_unflipped_errors": unflipped_n,
         "unflipped_error_rate_pct": round(100 * unflipped_n / informative_n, 4),
-        "unflipped_error_rate_ci95": _wilson(unflipped_n, informative_n),
         "examples": examples,
         "provenance_guardrail": (
             "No release-wide compound/dose substitution; cell line and table provenance "

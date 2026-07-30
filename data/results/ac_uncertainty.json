@@ -235,51 +235,51 @@
   "corrected_k_sensitivity": [
     {
       "K": 0.05,
-      "in_vitro_only_pct": 23.1,
-      "in_vivo_only_pct": 67.6,
-      "combined_pct": 71.4,
+      "in_vitro_only_pct": 23.3,
+      "in_vivo_only_pct": 72.3,
+      "combined_pct": 75.4,
       "conditional_uplifts": "fixed at pooled K=0.20 point estimates"
     },
     {
       "K": 0.1,
-      "in_vitro_only_pct": 21.6,
-      "in_vivo_only_pct": 70.4,
-      "combined_pct": 73.5,
+      "in_vitro_only_pct": 22.1,
+      "in_vivo_only_pct": 71.1,
+      "combined_pct": 74.2,
       "conditional_uplifts": "fixed at pooled K=0.20 point estimates"
     },
     {
       "K": 0.2,
-      "in_vitro_only_pct": 19.2,
-      "in_vivo_only_pct": 65.4,
-      "combined_pct": 69.0,
+      "in_vitro_only_pct": 19.4,
+      "in_vivo_only_pct": 66.5,
+      "combined_pct": 70.0,
       "conditional_uplifts": "fixed at pooled K=0.20 point estimates"
     },
     {
       "K": 0.3,
-      "in_vitro_only_pct": 16.2,
-      "in_vivo_only_pct": 61.5,
-      "combined_pct": 65.2,
+      "in_vitro_only_pct": 16.9,
+      "in_vivo_only_pct": 65.3,
+      "combined_pct": 68.6,
       "conditional_uplifts": "fixed at pooled K=0.20 point estimates"
     },
     {
       "K": 0.5,
-      "in_vitro_only_pct": 11.8,
-      "in_vivo_only_pct": 49.9,
-      "combined_pct": 54.1,
+      "in_vitro_only_pct": 12.2,
+      "in_vivo_only_pct": 52.2,
+      "combined_pct": 56.2,
       "conditional_uplifts": "fixed at pooled K=0.20 point estimates"
     },
     {
       "K": 0.7,
-      "in_vitro_only_pct": 6.5,
-      "in_vivo_only_pct": 33.0,
-      "combined_pct": 36.6,
+      "in_vitro_only_pct": 6.9,
+      "in_vivo_only_pct": 34.8,
+      "combined_pct": 38.4,
       "conditional_uplifts": "fixed at pooled K=0.20 point estimates"
     },
     {
       "K": 0.9,
-      "in_vitro_only_pct": 0.8,
-      "in_vivo_only_pct": 2.0,
-      "combined_pct": 2.7,
+      "in_vitro_only_pct": 1.1,
+      "in_vivo_only_pct": 3.0,
+      "combined_pct": 4.0,
       "conditional_uplifts": "fixed at pooled K=0.20 point estimates"
     }
   ],

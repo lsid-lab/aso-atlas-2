@@ -129,12 +129,10 @@ def _assay(gold: dict[str, Any]) -> str:
 
 
 def _rate(successes: int, total: int) -> dict[str, Any]:
-    _, low, high = legacy.wilson(successes, total)
     return {
         "recovered": successes,
         "gold_readouts": total,
         "recall_pct": round(100 * successes / total, 2) if total else None,
-        "ci95": {"low_pct": round(low, 2), "high_pct": round(high, 2)},
     }
 
 
