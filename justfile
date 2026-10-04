@@ -75,13 +75,24 @@ geneholdout-ef:
 ef-table: oligoai-efs
     uv run python -m analyses.logic.ef_table
 
-# ── Primary lineage-rescued Gold content-recall audit ──
-#    Connects each Gold readout to its frozen source/canonical raw row, follows
-#    the actual production deduplication group, and verifies the released winner.
+# ── Primary lineage-aware measurement audit ──
+#    Uses the versioned 22,000-measurement Gold ledger and frozen table map.
+#    Release scope is reconstructed from production lineage before outcomes are
+#    compared, yielding precision and recall over the same measurement population.
 audit:
-    uv run python analyses/validation/build_production_table_canonical_map.py
     uv run python analyses/validation/dedup_lineage.py
     uv run python analyses/validation/lineage_rescued_recall.py
+    uv run python -m analyses.validation.source_status_review
+
+# Recheck the three frozen tables whose later verifier runs show review status.
+# Uses versioned XML/run snapshots; does not grant full chemistry/context sign-off.
+audit-source-status:
+    uv run python -m analyses.validation.source_status_review
+
+# Refreshing the frozen source-table map requires the manually verified source
+# workspace and is intentionally separate from the reproducible primary audit.
+audit-refresh-source-map:
+    uv run python analyses/validation/build_production_table_canonical_map.py
 
 # Superseded release-wide/value-based matcher, retained only for provenance.
 legacy-audit:

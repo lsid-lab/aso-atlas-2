@@ -37,11 +37,19 @@ def canonical_percent_control_assessment(
     compared, while the lineage ledger supplies the source-derived table label.
     """
 
-    labels = (
-        lineage_ledger[["gold_id", "unit_conversion"]]
-        .drop_duplicates("gold_id")
-        .rename(columns={"gold_id": "measurement_id"})
-    )
+    if "side" in lineage_ledger:
+        gold_lineage = lineage_ledger[lineage_ledger["side"].eq("gold")]
+        labels = gold_lineage[["measurement_id", "unit_conversion"]].drop_duplicates(
+            "measurement_id"
+        )
+    else:
+        # Accept the former Gold-only ledger shape for focused unit fixtures.
+        gold_lineage = lineage_ledger
+        labels = (
+            gold_lineage[["gold_id", "unit_conversion"]]
+            .drop_duplicates("gold_id")
+            .rename(columns={"gold_id": "measurement_id"})
+        )
     gold = canonical_ledger[
         canonical_ledger["side"].eq("gold")
         & canonical_ledger["status"].fillna("").str.startswith("matched_")
@@ -52,7 +60,7 @@ def canonical_percent_control_assessment(
     gold["atlas_outcome"] = gold["counterpart_id"].map(atlas["outcome"])
 
     total_gold = int(
-        lineage_ledger["unit_conversion"].eq("% control → % inhibition").sum()
+        gold_lineage["unit_conversion"].eq("% control → % inhibition").sum()
     )
     compared = gold[gold["unit_conversion"].eq("% control → % inhibition")].copy()
     compared["gold_value"] = pd.to_numeric(compared["outcome"], errors="coerce")

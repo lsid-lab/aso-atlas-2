@@ -28,10 +28,7 @@
       "verdict": "real Atlas error",
       "charge_to": "Atlas context omission",
       "xml_evidence": "Example 4 states LLC-MK2 and HepG2 cells were treated with 4,000 nM for 24 hours; Table 17 prints both assay columns.",
-      "adjudication": "Atlas retains the two cell-line channels and values but dose is null on every matched row. The apparent cell-line disagreement in individual matcher pairs is only pair ordering among equal outcomes; the systematic defect is the omitted 4",
-      "null": [
-        "000 nM dose."
-      ]
+      "adjudication": "Atlas retains the two cell-line channels and values but dose is null on every matched row. The apparent cell-line disagreement in individual matcher pairs is only pair ordering among equal outcomes; the systematic defect is the omitted 4,000 nM dose."
     },
     {
       "issue_id": "C9_NEURO_MOUSE",
@@ -67,11 +64,7 @@
       "verdict": "mixed",
       "charge_to": "Atlas omissions and Gold dose error",
       "xml_evidence": "Example 15 identifies Studies 6 and 7 as 2,000 \u00b5g intrathecal studies and both FOB tables print 3 hr.",
-      "adjudication": "Atlas omits dose and route; Gold records 3",
-      "null": [
-        "000 rather than the source's 2",
-        "000 \u00b5g and omits the timepoint. Body parts versus Behavioral is a vocabulary/granularity difference for the same summed FOB score."
-      ]
+      "adjudication": "Atlas omits dose and route; Gold records 3,000 rather than the source's 2,000 \u00b5g and omits the timepoint. Body parts versus Behavioral is a vocabulary/granularity difference for the same summed FOB score."
     },
     {
       "issue_id": "AGT_INH_T17",
@@ -119,11 +112,7 @@
       "verdict": "real Atlas schema/extraction error",
       "charge_to": "Atlas IC50 mixing and one omitted dose",
       "xml_evidence": "The source prints four measured doses (74, 222, 666 and 2,000 nM) plus a separate IC50 column in \u00b5M.",
-      "adjudication": "Atlas converts each IC50 into a synthetic 50% inhibition point at IC50\u00d71",
-      "null": [
-        "000 nM. Eighteen are strict extras. For compound 609408 the synthetic 400 nM point displaces the printed 666 nM measurement",
-        " producing the sole inhibition value mismatch. The second patent/table is the byte-identical production canonical copy."
-      ]
+      "adjudication": "Atlas converts each IC50 into a synthetic 50% inhibition point at IC50\u00d71,000 nM. Eighteen are strict extras. For compound 609408 the synthetic 400 nM point displaces the printed 666 nM measurement, producing the sole inhibition value mismatch. The second patent/table is the byte-identical production canonical copy."
     },
     {
       "issue_id": "AGT_HEP_T25",
@@ -207,10 +196,7 @@
       "verdict": "real Atlas error",
       "charge_to": "Atlas dose-arm collapse and duplicate expansion",
       "xml_evidence": "The table is explicitly a three-point study and prints 20, 10 and 5 mg/kg rows for each compound over four weeks, with day-29 body weight.",
-      "adjudication": "Atlas retains only 20 mg/kg and duplicates values",
-      "null": [
-        " losing the lower dose arms. This produces 24 incorrect value pairings plus missing occurrences. Gold 28 and Atlas 29 reflect nominal-duration versus collection-day conventions."
-      ]
+      "adjudication": "Atlas retains only 20 mg/kg and duplicates values, losing the lower dose arms. This produces 24 incorrect value pairings plus missing occurrences. Gold 28 and Atlas 29 reflect nominal-duration versus collection-day conventions."
     },
     {
       "issue_id": "IRF4_HEP_T147",
@@ -246,10 +232,7 @@
       "verdict": "not a value error",
       "charge_to": "timing convention and species normalization",
       "xml_evidence": "Example 34 gives eight doses over four weeks, euthanasia 48 hours after the last dose and table captions at week 4.",
-      "adjudication": "As in the Balb/c block",
-      "null": [
-        " 28 versus 30 is nominal duration versus post-dose collection and mouse versus CD1 mice is normalization. All compared values are source-supported."
-      ]
+      "adjudication": "As in the Balb/c block, 28 versus 30 is nominal duration versus post-dose collection and mouse versus CD1 mice is normalization. All compared values are source-supported."
     },
     {
       "issue_id": "IRF4_HEP_CD1_T162",
@@ -273,14 +256,7 @@
       "verdict": "not a value error",
       "charge_to": "timing convention and species normalization",
       "xml_evidence": "Example 35 gives six weekly doses and sacrifice 48 hours after the last dose.",
-      "adjudication": "Gold 42 encodes six nominal weeks. Atlas 37 is consistent with doses on days 1",
-      "null": [
-        " 8",
-        " 15",
-        " 22",
-        " 29 and 36 followed by collection two days later",
-        " expressed as elapsed days. Rat versus Sprague-Dawley rat is normalization."
-      ]
+      "adjudication": "Gold 42 encodes six nominal weeks. Atlas 37 is consistent with doses on days 1, 8, 15, 22, 29 and 36 followed by collection two days later, expressed as elapsed days. Rat versus Sprague-Dawley rat is normalization."
     },
     {
       "issue_id": "IRF4_HEP_RAT_T177",
@@ -304,10 +280,7 @@
       "verdict": "schema ambiguity",
       "charge_to": "one period field cannot encode channel-specific time",
       "xml_evidence": "Example 37 states blood, plasma and serum collection on day 44; the table header separately labels serum day 44 and urine day 42.",
-      "adjudication": "Gold period 42 and Atlas elapsed period 43 each collapse channel-specific times into one row-level field. The strict mismatch exposes schema loss",
-      "null": [
-        " not an outcome extraction error; monkey versus Cynomolgus monkey is normalization."
-      ]
+      "adjudication": "Gold period 42 and Atlas elapsed period 43 each collapse channel-specific times into one row-level field. The strict mismatch exposes schema loss, not an outcome extraction error; monkey versus Cynomolgus monkey is normalization."
     }
   ]
 }
