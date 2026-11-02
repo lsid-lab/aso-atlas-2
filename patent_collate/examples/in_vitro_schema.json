@@ -1,0 +1,6 @@
+{
+  "compound_id": "string",
+  "inhibition_pct": "Percent inhibition, float 0-100. Calculate as 100 - relative expression if needed.",
+  "cell_line": "Cell line name, string.",
+  "dosage_nm": "Dosage in nanomolar (nM), float."
+}

@@ -20,3 +20,11 @@ __pycache__/
 .vscode/
 .idea/
 .DS_Store
+
+# Local experiments and extraction results
+results/
+reproduction/
+
+# Temporary source backups
+*.bak
+cli_before_*.py
