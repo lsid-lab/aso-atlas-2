@@ -178,6 +178,8 @@ uv run --frozen python cli.py step3 \
 
 ## 6. 出力ディレクトリの構成
 
+### 6.1 出力ディレクトリの基本構成
+
 `--output-dir results/experiment_01`を指定し、Table 20・40を処理した例です。
 
 ```text
@@ -219,6 +221,76 @@ results/experiment_01/
 生成スクリプトは実行前に保存され、再試行などで複数回生成された場合も別ファイルとして残ります。対応するメタデータJSONには、モデル名・Step・対象テーブル・ツール呼び出しID・生成日時・SHA-256ハッシュなどを記録します。**メタデータは生成履歴であり、スクリプト単位の実行成功・失敗を記録するものではありません。**
 
 出力ディレクトリは既存のパスを上書きしないよう設計されています。実験ごとに新しい名前を指定してください。
+
+### 6.2 検証データの保存先（研究室サーバー）
+
+特許全文XMLを入力し、改造パイプラインで前処理からStep 1〜3まで実行した検証データを、研究室サーバーに保存しています。以下は代表的な実行例です。
+
+- **サーバー**：`workstation01`
+- **対象特許**：`US20160251655A1`
+- **対象Table**：20、40
+- **使用モデル**：Claude Haiku 5.5
+- **入力形式**：特許全文XML（`full-patent`）
+
+**サーバー上の基準ディレクトリ**
+
+```text
+/home/kkashiwagi/research/aso-atlas-2-litellm/patent_collate/
+```
+
+**検証データの構成**
+
+```text
+patent_collate/
+│
+├── reproduction/                              # 検証用の入力データ
+│   └── US20160251655A1/                      # 対象特許の検証データ
+│       └── source/                           # パイプラインへの入力フォルダ
+│           └── US20160251655A1.xml           # 元の特許全文XML
+│
+└── results/                                   # パイプラインの実行結果
+    └── claude_haiku55_script_save_run01/      # Claude Haiku 5.5による検証
+        └── output/                           # 前処理・Step1〜3の出力
+            │
+            ├── preprocessing/                # 特許全文XMLの前処理結果
+            │   ├── atlas2_input/             # 生成したTable XML・Context
+            │   │   ├── US20160251655A1_table_00020.xml
+            │   │   ├── US20160251655A1_table_00020_context.txt
+            │   │   ├── US20160251655A1_table_00040.xml
+            │   │   └── US20160251655A1_table_00040_context.txt
+            │   └── table_mapping.csv         # 元のTable番号と生成ファイルの対応表
+            │
+            ├── tables/                       # Tableごとの独立実行結果
+            │   ├── US20160251655A1_table_00020/
+            │   │   ├── input/
+            │   │   ├── step1_table_data.json
+            │   │   ├── step2_helm_annotations.json
+            │   │   ├── step3_collation_results.json
+            │   │   └── generated_scripts/
+            │   │       ├── step1/
+            │   │       ├── step2/
+            │   │       └── step3/
+            │   │
+            │   └── US20160251655A1_table_00040/
+            │       ├── input/
+            │       ├── step1_table_data.json
+            │       ├── step2_helm_annotations.json
+            │       ├── step3_collation_results.json
+            │       └── generated_scripts/
+            │           ├── step1/
+            │           ├── step2/
+            │           └── step3/
+            │
+            └── experiment_summary.json       # 使用モデル・処理時間・APIコスト等
+```
+
+- **元の特許全文XML**：`reproduction/US20160251655A1/source/US20160251655A1.xml`
+- **Table XML・Context**：`results/claude_haiku55_script_save_run01/output/preprocessing/atlas2_input/`
+- **Step 1〜3の出力**：`results/claude_haiku55_script_save_run01/output/tables/`
+
+各Stepの出力ファイルや生成スクリプトの内容については、**6.1**を参照してください。`results/`には開発過程で実施したほかの検証結果も保存しています。
+
+※ `experiment_summary.json`中の絶対パスは実行時のMac側のものです。研究室サーバー上の実際の保存場所は上記を参照してください。また、ほかのユーザーからの閲覧には、サーバー上のアクセス権限が必要です。
 
 ## 7. よく使うオプション（必須・任意）
 
